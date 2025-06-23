@@ -1,3 +1,6 @@
+using Pkg
+Pkg.activate(".")
+
 include("../src/init.jl")
 include("../src/generate_mesh.jl")
 
