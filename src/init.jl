@@ -21,7 +21,7 @@ end
 struct Mesh{n, m}
     domain_nodes::Vector{Node{n}}
     domain_elements::Vector{Meshes.Connectivity{Meshes.Ngon{m},m}}
-    boundary_nodes::Vector{Meshes.Point{𝔼{n}}}
+    boundary_nodes::Vector{Node{n}}
 end
 
 struct MaxwellSolver

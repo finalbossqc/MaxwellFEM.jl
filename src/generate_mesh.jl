@@ -24,5 +24,5 @@ function generate_2D_triangular(N::Int64, Lx::Float64, Ly::Float64, material::Ma
     boundary_points = sample_boundary_2D(N, Lx, Ly; rng=rng)
     append!(points, boundary_points)
     mesh = tesselate(points, method)
-    return Mesh{2,3}(Node.(mesh.vertices), mesh.topology.connec, boundary_points)
+    return Mesh{2,3}(Node.(mesh.vertices), mesh.topology.connec, Node.(boundary_points))
 end
