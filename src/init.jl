@@ -14,8 +14,12 @@ struct Material
     sigma::Float64     # Conductivity
 end
 
+struct Node{n}
+    coord::Meshes.Point{𝔼{n}}
+end
+
 struct Mesh{n, m}
-    domain_nodes::Vector{Meshes.Point{𝔼{n}}}
+    domain_nodes::Vector{Node{n}}
     domain_elements::Vector{Meshes.Connectivity{Meshes.Ngon{m},m}}
     boundary_nodes::Vector{Meshes.Point{𝔼{n}}}
 end
