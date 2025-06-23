@@ -15,12 +15,24 @@ struct Material
 end
 
 struct Node{n}
-    coord::Meshes.Point{𝔼{n}}
+    point::Meshes.Point{𝔼{n}}
 end
 
-struct Mesh{n, m}
+struct Element{n}
+    nodes::Vector{Node{n}}
+end
+
+function nodes(nodelist::Vector, connec::Meshes.Connectivity)
+    res = Vector{Node}()
+    for i in indices(connec)
+        push!(res, nodelist[i])
+    end
+    return res
+end
+
+struct Mesh{n}
     domain_nodes::Vector{Node{n}}
-    domain_elements::Vector{Meshes.Connectivity{Meshes.Ngon{m},m}}
+    domain_elements::Vector{Element{n}}
     boundary_nodes::Vector{Node{n}}
 end
 
