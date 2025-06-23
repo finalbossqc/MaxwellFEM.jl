@@ -1,6 +1,3 @@
-using Pkg
-Pkg.activate(".")
-
 using LinearAlgebra
 using SparseArrays
 using Plots
