@@ -1,3 +1,6 @@
+using Pkg
+Pkg.activate(".")
+
 using LinearAlgebra
 using SparseArrays
 using Plots
@@ -6,6 +9,7 @@ using Meshes
 using Random
 using CoordRefSystems
 using Makie
+using GLMakie
 
 struct Material
     epsilon::Float64    # Relative permittivity
@@ -13,22 +17,10 @@ struct Material
     sigma::Float64     # Conductivity
 end
 
-struct Node
-    x::Float64
-    y::Float64
-    id::Int
-end
-
-struct Element
-    nodes::Vector{Int}  # Node indices for triangular element
-    material::Material
-    id::Int
-end
-
-struct Mesh
-    nodes::Vector{Node}
-    elements::Vector{Element}
-    boundary_nodes::Vector{Int}
+struct Mesh{n, m}
+    domain_nodes::Vector{Meshes.Point{𝔼{n}}}
+    domain_elements::Vector{Meshes.Connectivity{Meshes.Ngon{m},m}}
+    boundary_nodes::Vector{Meshes.Point{𝔼{n}}}
 end
 
 struct MaxwellSolver
